@@ -2,4 +2,54 @@ SummitEvergreen PHP SDK
 =======================
 
 # php-sdk
-PHP SDK for working with Summit Evergreen accounts
+PHP SDK for working with Summit Evergreen accounts.
+
+# Supported Functionality
+* Add customer purchase
+* Refund customer purchase
+
+Installation / Usage
+--------------------
+Add `"summitevergreen": "~1.0.0"` to your composer.json requirements.
+
+Sample usage adding a purchase for a customer:
+
+```
+$summit = new Summit('A1B2C3D4E5','9ec05a816a63e99e218b88a69614f313c29082be');
+
+$purchaseInfo = [
+    'email' => 'who@cares.com',
+    'first_name' => 'Nunya',
+    'last_name' => 'Bidness',
+    'price' => 199.00,
+    'sku' => 'COURSE1000'
+];
+
+$purchase = $summit->setPurchaseData($purchaseInfo);
+$return = $purchase->addPurchase();
+```
+You may chain the addPurchase() method if you prefer:
+
+```
+$purchase = $summit->setPurchaseData($purchaseInfo)->addPurchase();
+```
+
+**Note:** `email`, `first_name`, `last_name`, `price`, and `sku` are all required fields.
+
+You can include `order_id` if you have generated your own, or the API will generate one for you.
+
+You may also include `payment_id` from your system for tracking purposes.
+_If you include the `payment_id`, you **must** include the `order_id` as well._
+
+Returned Data
+-------------
+The **Summit Evergreen** API will return a JSON-encoded array as follows:
+
+```
+{
+message: "",
+errors: [ ],
+order_id: "54f8b72da6c94",
+thankyou_url: "{Full URL to Thank You page for customer}"
+}
+```
