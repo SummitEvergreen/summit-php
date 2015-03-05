@@ -1,20 +1,26 @@
 <?php namespace SummitEvergreen;
 
-use SummitEvergreen\SummitException;
-
+/**
+ * Class Summit
+ * @package SummitEvergreen
+ */
 class Summit {
 
 	protected $apiKey;
-	protected $acctHash;
+	protected $acctKey;
 	protected $requiredFields;
 	protected $requestURL = "http://my.summitevergreen.com/purchases/webhook/";
 	protected $requestData = array();
 	protected $errors = array();
 	protected $return;
 
-	public function __construct ($acctHash, $apiKey)
+	/**
+	 * @param $acctKey - Customer Account Key
+	 * @param $apiKey - Customer API Key
+	 */
+	public function __construct ($acctKey, $apiKey)
 	{
-		$this->acctHash = $acctHash;
+		$this->acctKey = $acctKey;
 		$this->apiKey = $apiKey;
 
 		$this->requiredFields = array(
@@ -26,6 +32,11 @@ class Summit {
 		);
 	}
 
+	/**
+	 * @param array $purchaseData
+	 *
+	 * @return $this
+	 */
 	public function setPurchaseData($purchaseData)
 	{
 		$this->requestData['api'] = $this->apiKey;
@@ -46,6 +57,10 @@ class Summit {
 		return $this;
 	}
 
+	/**
+	 * Returns json_encoded string.
+	 * @return mixed|string
+	 */
 	public function addPurchase()
 	{
 		// if we have an error in the earlier processes, we need to stop before we contact the remote server.
@@ -54,12 +69,16 @@ class Summit {
 			return $this->formatErrors();
 		}
 
-		$this->requestURL .= $this->acctHash . "/payment/";
+		$this->requestURL .= $this->acctKey . "/payment/";
 
 		return $this->sendRequest();
 	}
 
 
+	/**
+	 * Returns json_encoded string.
+	 * @return mixed|string
+	 */
 	public function doRefund()
 	{
 		// if we have an error in the earlier processes, we need to stop before we contact the remote server.
@@ -68,11 +87,14 @@ class Summit {
 			return $this->formatErrors();
 		}
 
-		$this->requestURL .= $this->acctHash . "/refund/";
+		$this->requestURL .= $this->acctKey . "/refund/";
 
 		return $this->sendRequest();
 	}
 
+	/**
+	 * @return mixed
+	 */
 	private function sendRequest ()
 	{
 		$ch = curl_init($this->requestURL);
@@ -83,6 +105,9 @@ class Summit {
 		return $result;
 	}
 
+	/**
+	 * @return bool
+	 */
 	private function haveErrors()
 	{
 		if(count($this->errors) > 0)
@@ -92,6 +117,9 @@ class Summit {
 		return false;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function formatErrors()
 	{
 		$return = array(
