@@ -1,0 +1,21 @@
+{
+  "name": "summitevergreen/php-sdk",
+  "description": "SDK for payment processing with Summit Evergreen's API",
+  "license": "MIT",
+  "keywords": ["summit","evergreen"],
+  "authors": [
+    {
+      "name": "Bill Wheeler",
+      "email": "admin@phpdreams.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SummitEvergreen\\": "src"
+    }
+  }
+}
