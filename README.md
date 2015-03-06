@@ -1,12 +1,11 @@
 SummitEvergreen PHP SDK
 =======================
 
-# php-sdk
-PHP SDK for working with Summit Evergreen accounts.
+PHP SDK for working with **Summit Evergreen** accounts.
 
 # Supported Functionality
-* Add customer purchase
-* Refund customer purchase
+
+Our initial release of the API and SDK just supports adding and refunding purchases, but we'll add more features in the future as our customers need.
 
 Installation / Usage
 --------------------
@@ -15,6 +14,8 @@ Add `"summitevergreen": "~1.0.0"` to your composer.json requirements.
 Sample usage adding a purchase for a customer:
 
 ```
+use SummitEvergreen\Summit;
+
 $summit = new Summit('A1B2C3D4E5','9ec05a816a63e99e218b88a69614f313c29082be');
 
 $purchaseInfo = [
@@ -34,7 +35,13 @@ You may chain the addPurchase() method if you prefer:
 $purchase = $summit->setPurchaseData($purchaseInfo)->addPurchase();
 ```
 
-**Note:** `email`, `first_name`, `last_name`, `price`, and `sku` are all required fields.
+To **refund** the purchase, send the same information but with a different final method.
+
+```
+$purchase = $summit->setPurchaseData($purchaseInfo)->doRefund();
+```
+
+**Note:** `email`, `first_name`, `last_name`, `price`, and `sku` are all required fields for **both** purchases and refunds.
 
 You can include `order_id` if you have generated your own, or the API will generate one for you.
 
@@ -43,13 +50,14 @@ _If you include the `payment_id`, you **must** include the `order_id` as well._
 
 Returned Data
 -------------
-The **Summit Evergreen** API will return a JSON-encoded array as follows:
+The **Summit Evergreen** API and this SDK will return a JSON-encoded array as follows:
 
 ```
 {
-message: "",
+message: "{Operation success message}",
 errors: [ ],
 order_id: "54f8b72da6c94",
 thankyou_url: "{Full URL to Thank You page for customer}"
 }
 ```
+
