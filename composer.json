@@ -1,12 +1,12 @@
 {
-  "name": "summitevergreen/php-sdk",
-  "description": "SDK for payment processing with Summit Evergreen's API",
+  "name": "summitevergreen/summit-php",
+  "description": "API Wrapper for payment processing with Summit Evergreen's API",
   "license": "MIT",
   "keywords": ["summit","evergreen"],
   "authors": [
     {
       "name": "Bill Wheeler",
-      "email": "admin@phpdreams.com"
+      "email": "support@summitevergreen.com"
     }
   ],
   "require": {},
