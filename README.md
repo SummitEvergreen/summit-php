@@ -11,7 +11,7 @@ You can sign up for a Summit Evergreen account at https://summitevergreen.com.
 
 PHP 5.3.3 and later.
 
-# Supported Functionality
+## Supported Functionality
 
 The PHP Library allows you to use the Summit Evergreen API to create and refund user purchases in your Summit Evergreen course. 
 Easily integrate your own purchase and checkout flow, and create stronger integrations with the system that power your business.
