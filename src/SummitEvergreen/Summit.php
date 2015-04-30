@@ -9,6 +9,7 @@ class Summit {
 	protected $apiKey;
 	protected $acctKey;
 	protected $requiredFields;
+	protected $optionalFields;
 	protected $requestURL = "http://my.summitevergreen.com/purchases/webhook/";
 	protected $requestData = array();
 	protected $errors = array();
@@ -29,6 +30,11 @@ class Summit {
 			'last_name',
 			'price',
 			'sku'
+		);
+
+		$this->optionalFields = array(
+			'order_id',
+			'payment_id'
 		);
 	}
 
@@ -52,6 +58,14 @@ class Summit {
 				$this->errors[] = "Missing purchase field: ".$field;
 			}
 
+		}
+
+		foreach ($this->optionalFields as $field)
+		{
+			if(isset($purchaseData[$field]))
+			{
+				$this->requestData[$field] = $purchaseData[$field];
+			}
 		}
 
 		return $this;
