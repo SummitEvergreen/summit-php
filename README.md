@@ -60,7 +60,7 @@ $purchaseInfo = [
 
 $purchase = $summit->setPurchaseData($purchaseInfo);
 
-// Returns a JSON-ecoding string with the purchase data (see below)
+// Returns a JSON-encoded string with the purchase data (see below)
 $return = $purchase->addPurchase();
 ```
 
