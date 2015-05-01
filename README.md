@@ -81,6 +81,7 @@ $purchase = $summit->setPurchaseData($purchaseInfo)->doRefund();
 You can include `order_id` if you have generated your own, or the API will generate one for you.
 
 You may also include `payment_id` from your system for tracking purposes.
+
 _If you include the `payment_id`, you **must** include the `order_id` as well._
 
 Returned Data
