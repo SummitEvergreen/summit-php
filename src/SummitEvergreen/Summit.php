@@ -83,7 +83,7 @@ class Summit {
 			return $this->formatErrors();
 		}
 
-		$this->requestURL .= $this->acctKey . "/payment/";
+		$this->requestURL .= $this->acctKey . "/payment/custom/";
 
 		return $this->sendRequest();
 	}
@@ -101,7 +101,7 @@ class Summit {
 			return $this->formatErrors();
 		}
 
-		$this->requestURL .= $this->acctKey . "/refund/";
+		$this->requestURL .= $this->acctKey . "/refund/custom/";
 
 		return $this->sendRequest();
 	}
