@@ -10,7 +10,7 @@ class Summit {
 	protected $acctKey;
 	protected $requiredFields;
 	protected $optionalFields;
-	protected $requestURL = "http://my.summitevergreen.com/purchases/webhook/";
+	protected $requestURL = "https://my.summitevergreen.com/purchases/webhook/";
 	protected $requestData = array();
 	protected $errors = array();
 	protected $return;
